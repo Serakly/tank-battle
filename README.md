@@ -5,7 +5,7 @@
 ## 试玩
 
 - 直接双击打开 `index.html`,或部署到任意静态站点(GitHub Pages 等)。
-- 在线试玩:https://<你的用户名>.github.io/<仓库名>/
+- 在线试玩:https://serakly.github.io/tank-battle/
 
 ## 玩法
 
