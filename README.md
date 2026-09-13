@@ -47,3 +47,8 @@ python -m http.server 8000
 ├── index.html   # 游戏全部代码(HTML + CSS + JS 单文件)
 └── README.md
 ```
+
+## 其他项目
+
+- [AI 价格雷达](ai-price-hub/) —— OpenAI/Codex、Claude、智谱 GLM、豆包等 AI 的各国订阅价 & API 单价，每日自动更新。
+  在线访问: <https://serakly.github.io/tank-battle/ai-price-hub/>

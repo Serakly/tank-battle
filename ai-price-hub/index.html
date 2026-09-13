@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 价格雷达 · 订阅与 API 每日价格</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%A1%3C/text%3E%3C/svg%3E">
+<meta name="description" content="OpenAI/Codex、Claude、智谱 GLM、豆包等热门 AI 的订阅与 API 价格，按国家展示，每日更新汇率与官方价格。">
+<style>
+  :root {
+    --bg: #0b0d12;
+    --panel: #12151d;
+    --panel2: #171b25;
+    --line: #232836;
+    --text: #e7eaf0;
+    --muted: #8b93a5;
+    --accent: #5b8cff;
+    --good: #34d399;
+    --warn: #fbbf24;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scrollbar-color: #2a3040 var(--bg); }
+  body {
+    background:
+      radial-gradient(900px 400px at 80% -10%, rgba(91,140,255,.12), transparent 60%),
+      radial-gradient(700px 300px at 10% -5%, rgba(217,119,87,.08), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+    min-height: 100vh;
+    padding-bottom: 60px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+  header { padding: 34px 0 10px; }
+  .brand { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .logo {
+    width: 38px; height: 38px; border-radius: 10px; flex: none;
+    background: linear-gradient(135deg, #5b8cff, #9b6bff);
+    display: grid; place-items: center; font-size: 20px;
+    box-shadow: 0 6px 24px rgba(91,140,255,.35);
+  }
+  h1 { font-size: 26px; letter-spacing: 1px; }
+  .tagline { color: var(--muted); margin-top: 6px; font-size: 14px; }
+
+  .meta-row {
+    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    margin: 18px 0 6px; font-size: 13px; color: var(--muted);
+  }
+  .pill {
+    background: var(--panel); border: 1px solid var(--line);
+    padding: 5px 12px; border-radius: 999px; display: inline-flex; gap: 6px; align-items: center;
+  }
+  .pill b { color: var(--text); font-weight: 600; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--good); display: inline-block; }
+  .dot.stale { background: var(--warn); }
+
+  .cur-bar { display: flex; align-items: center; gap: 8px; margin: 14px 0 4px; flex-wrap: wrap; }
+  .cur-bar .label { color: var(--muted); font-size: 13px; }
+  .cur {
+    background: var(--panel); border: 1px solid var(--line); color: var(--muted);
+    padding: 6px 14px; border-radius: 8px; cursor: pointer; font-size: 13px;
+  }
+  .cur.active { border-color: var(--accent); color: var(--text); background: rgba(91,140,255,.12); }
+
+  nav.tabs { display: flex; gap: 8px; margin: 22px 0 16px; flex-wrap: wrap; }
+  .tab {
+    background: var(--panel); border: 1px solid var(--line); color: var(--muted);
+    padding: 9px 18px; border-radius: 10px; cursor: pointer; font-size: 14px;
+  }
+  .tab.active { color: var(--text); border-color: var(--accent); background: rgba(91,140,255,.14); }
+
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--panel); border: 1px solid var(--line); color: var(--muted);
+    padding: 5px 13px; border-radius: 999px; cursor: pointer; font-size: 13px;
+  }
+  .chip.active { color: var(--text); border-color: var(--accent); }
+  .chip .swatch { width: 8px; height: 8px; border-radius: 50%; }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; overflow: hidden;
+  }
+  .hint { color: var(--muted); font-size: 12.5px; margin: 10px 2px 14px; line-height: 1.7; }
+
+  .tbl-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 980px; font-size: 14px; }
+  th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  thead th {
+    position: sticky; top: 0; background: var(--panel2);
+    color: var(--muted); font-weight: 600; font-size: 12.5px; z-index: 2;
+  }
+  tbody tr:hover { background: rgba(91,140,255,.05); }
+  tbody tr:last-child td { border-bottom: none; }
+  th:first-child, td:first-child { position: sticky; left: 0; background: var(--panel); z-index: 1; }
+  tbody tr:hover td:first-child { background: var(--panel2); }
+
+  .prod { display: flex; flex-direction: column; gap: 3px; min-width: 170px; }
+  .prod .name { font-weight: 600; }
+  .prod .sub { color: var(--muted); font-size: 12px; max-width: 260px; white-space: normal; line-height: 1.5; }
+  .vbadge {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; width: fit-content;
+  }
+  .vbadge .swatch { width: 7px; height: 7px; border-radius: 50%; }
+
+  .loc { font-weight: 600; font-size: 14.5px; }
+  .approx-line { color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .taxline { color: var(--muted); font-size: 11px; margin-top: 1px; opacity: .85; }
+  .approx-line .flag { font-style: normal; }
+  td.na { color: #565e70; text-align: center; }
+  td.na:hover::after {
+    content: attr(data-tip); position: absolute; transform: translate(-50%, -130%);
+  }
+  td.na { position: relative; }
+  .zero { color: var(--good); }
+
+  .num { font-variant-numeric: tabular-nums; }
+  .src-link { font-size: 12px; }
+
+  .section-title { font-size: 17px; margin: 26px 0 8px; display: flex; align-items: center; gap: 8px; }
+  .section-title .vbadge { transform: translateY(1px); }
+
+  footer { margin-top: 44px; color: var(--muted); font-size: 12.5px; line-height: 1.9; }
+  footer h3 { color: var(--text); font-size: 13.5px; margin-bottom: 6px; }
+  footer .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+
+  #error {
+    display: none; margin-top: 30px; padding: 18px; border: 1px solid #7f1d1d;
+    background: rgba(127,29,29,.15); border-radius: 12px; line-height: 1.8;
+  }
+  [hidden] { display: none !important; }
+  @media (max-width: 640px) {
+    h1 { font-size: 21px; }
+    .wrap { padding: 0 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="logo">📡</div>
+      <h1>AI 价格雷达</h1>
+    </div>
+    <p class="tagline">OpenAI · Codex ／ Anthropic · Claude ／ 智谱 GLM ／ 字节豆包 —— 各国订阅价 &amp; API 单价，每日更新</p>
+    <div class="meta-row" id="meta"></div>
+    <div class="cur-bar">
+      <span class="label">折算货币</span>
+      <span id="cur-pills"></span>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="sub">💳 订阅价格 · 按国家</button>
+    <button class="tab" data-tab="api">⚡ API 价格 · 每百万 tokens</button>
+  </nav>
+
+  <div id="error"></div>
+
+  <main>
+    <section id="tab-sub">
+      <div class="filters" id="filters-sub"></div>
+      <div class="card tbl-wrap">
+        <table id="subs-table">
+          <thead><tr id="subs-head"></tr></thead>
+          <tbody id="subs-body"></tbody>
+        </table>
+      </div>
+      <p class="hint">“—” 表示该服务未在当地开设本地货币定价（多以美元计价）或不向该地区销售；带 “约” 的为参考价。税前/含税以当地结账页为准。</p>
+    </section>
+
+    <section id="tab-api" hidden>
+      <div class="filters" id="filters-api"></div>
+      <div class="card tbl-wrap">
+        <table id="api-table">
+          <thead>
+            <tr>
+              <th>模型</th><th>厂商</th>
+              <th>输入 / 1M</th><th>输出 / 1M</th><th>缓存读 / 1M</th><th>折算</th><th>备注</th><th>来源</th>
+            </tr>
+          </thead>
+          <tbody id="api-body"></tbody>
+        </table>
+      </div>
+      <p class="hint">单价为官方标准档（非批量/非优惠）；“折算” 列按当前汇率把原生货币价格换算成所选货币。豆包按输入长度分档，表中取 ≤32K 档，详见备注。</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="cols">
+      <div>
+        <h3>🔄 更新机制</h3>
+        GitHub Actions 每天北京时间 00:30 运行 <code>scripts/update_data.py</code>：刷新汇率（open.er-api.com）并尽力抓取 OpenAI / Anthropic / 智谱官方文档页的 API 价格，抓取失败则保留旧值。订阅价人工维护，见仓库 README。
+      </div>
+      <div>
+        <h3>🔗 数据来源</h3>
+        <a href="https://chatgpt.com/pricing/" target="_blank" rel="noopener">OpenAI 订阅定价</a> ·
+        <a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">OpenAI API 定价</a> ·
+        <a href="https://www.anthropic.com/pricing" target="_blank" rel="noopener">Claude 订阅定价</a> ·
+        <a href="https://platform.claude.com/docs/en/docs/about-claude/models" target="_blank" rel="noopener">Claude 模型价格</a> ·
+        <a href="https://bigmodel.cn/glm-coding" target="_blank" rel="noopener">智谱 GLM Coding</a> ·
+        <a href="https://z.ai/subscribe" target="_blank" rel="noopener">z.ai 国际版</a> ·
+        <a href="https://www.volcengine.com/docs/82379/1544106" target="_blank" rel="noopener">火山方舟模型价格</a>
+      </div>
+      <div>
+        <h3>⚠️ 免责声明</h3>
+        促销价、分档价与税费变动频繁，本页数据仅供参考，下单前请以各官方页面为准。汇率来自 open.er-api.com，每日更新一次。
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+"use strict";
+
+const VENDORS = {
+  openai:    { name: "OpenAI · ChatGPT / Codex", color: "#10a37f" },
+  anthropic: { name: "Anthropic · Claude",       color: "#d97757" },
+  zhipu:     { name: "智谱 · GLM",               color: "#4f7cff" },
+  doubao:    { name: "字节 · 豆包",              color: "#3d8bff" },
+};
+const COUNTRIES = [
+  ["US", "美国", "USD"],
+  ["EU", "欧元区", "EUR"],
+  ["UK", "英国", "GBP"],
+  ["JP", "日本", "JPY"],
+  ["IN", "印度", "INR"],
+  ["CN", "中国", "CNY"],
+];
+const SYM = { USD: "US$", EUR: "€", GBP: "£", JPY: "¥", CNY: "¥", INR: "₹" };
+const FLAGS = { US: "🇺🇸", EU: "🇪🇺", UK: "🇬🇧", JP: "🇯🇵", IN: "🇮🇳", CN: "🇨🇳" };
+const CURRENCIES = ["CNY", "USD", "EUR", "JPY", "INR"];
+
+let DATA = null;
+let state = { tab: "sub", cur: "CNY", vendor: "all" };
+
+function conv(amount, from, to) {
+  const r = DATA.fx.rates;
+  if (!r || !r[from] || !r[to]) return null;
+  return (amount / r[from]) * r[to];
+}
+function fmt(amount, code) {
+  if (amount == null || isNaN(amount)) return "—";
+  const dec = (code === "JPY" || code === "INR") ? 0 : (amount >= 1000 ? 0 : amount >= 100 ? 1 : 2);
+  return SYM[code] + amount.toLocaleString("zh-CN", { minimumFractionDigits: dec === 1 ? 1 : 0, maximumFractionDigits: dec });
+}
+function fmtT(amount, from) {
+  const v = conv(amount, from, state.cur);
+  return v == null ? "" : "≈ " + fmt(v, state.cur);
+}
+
+function renderMeta() {
+  const el = document.getElementById("meta");
+  const up = DATA.updated_at ? DATA.updated_at.replace("T", " ").replace("Z", " UTC") : "—";
+  const fxAs = (DATA.fx && DATA.fx.as_of) || "—";
+  const st = DATA.scrape_status || {};
+  const okCount = Object.values(st).filter(v => v === "ok").length;
+  el.innerHTML = `
+    <span class="pill"><span class="dot"></span>数据更新 <b>${up}</b></span>
+    <span class="pill">汇率更新 <b>${fxAs}</b></span>
+    <span class="pill">自动抓取 <b>${okCount}/${Object.keys(st).length || 0} 项成功</b></span>`;
+}
+
+function renderCurPills() {
+  const el = document.getElementById("cur-pills");
+  el.innerHTML = "";
+  for (const c of CURRENCIES) {
+    const b = document.createElement("button");
+    b.className = "cur" + (state.cur === c ? " active" : "");
+    b.textContent = c;
+    b.onclick = () => { state.cur = c; renderCurPills(); renderTables(); };
+    el.appendChild(b);
+  }
+}
+
+function vendorChipHtml(key, active) {
+  const v = VENDORS[key];
+  return `<button class="chip${active ? " active" : ""}" data-vendor="${key}">
+    <span class="swatch" style="background:${v.color}"></span>${v.name}</button>`;
+}
+function renderFilters() {
+  for (const sec of ["sub", "api"]) {
+    const el = document.getElementById("filters-" + sec);
+    const rows = sec === "sub" ? DATA.subscriptions : DATA.api_prices;
+    const present = [...new Set(rows.map(r => r.vendor))];
+    el.innerHTML = `<button class="chip${state.vendor === "all" ? " active" : ""}" data-vendor="all">全部</button>` +
+      present.map(k => vendorChipHtml(k, state.vendor === k)).join("");
+    el.querySelectorAll(".chip").forEach(b => b.onclick = () => {
+      state.vendor = b.dataset.vendor;
+      renderFilters(); renderTables();
+    });
+  }
+}
+
+function renderSubsHead() {
+  const tr = document.getElementById("subs-head");
+  tr.innerHTML = "<th>产品</th>" + COUNTRIES.map(([cc, name, cur]) =>
+    `<th>${FLAGS[cc]} ${name} · ${cur}</th>`).join("");
+}
+
+function cellHtml(p) {
+  if (!p) return `<td class="na" data-tip="无本地定价 / 不销售">—</td>`;
+  const parts = [`<div class="loc num">${p.approx ? "约 " : ""}${fmt(p.amount, p.currency)}</div>`];
+  const t = fmtT(p.amount, p.currency);
+  if (t && p.currency !== state.cur) parts.push(`<div class="approx-line">${t}</div>`);
+  if (p.tax) parts.push(`<div class="taxline">${p.tax}</div>`);
+  else if (p.note) parts.push(`<div class="taxline">${p.note}</div>`);
+  if (p.tax && p.note) parts[parts.length - 1] = `<div class="taxline">${p.tax} · ${p.note}</div>`;
+  return `<td>${parts.join("")}</td>`;
+}
+
+function renderSubs() {
+  const tb = document.getElementById("subs-body");
+  const rows = DATA.subscriptions.filter(r => state.vendor === "all" || r.vendor === state.vendor);
+  tb.innerHTML = rows.map(r => {
+    const v = VENDORS[r.vendor];
+    return `<tr>
+      <td><div class="prod">
+        <span class="vbadge"><span class="swatch" style="background:${v.color}"></span>${v.name}</span>
+        <span class="name">${r.product}</span>
+        <span class="sub">${r.note || ""}</span>
+        <a class="src-link" href="${r.source}" target="_blank" rel="noopener">官方定价 ↗</a>
+      </div></td>
+      ${COUNTRIES.map(([cc]) => cellHtml(r.countries ? r.countries[cc] : null)).join("")}
+    </tr>`;
+  }).join("");
+}
+
+function renderApi() {
+  const tb = document.getElementById("api-body");
+  const rows = DATA.api_prices.filter(r => state.vendor === "all" || r.vendor === state.vendor);
+  tb.innerHTML = rows.map(r => {
+    const v = VENDORS[r.vendor];
+    const c = r.currency;
+    const convLine = r.currency !== state.cur
+      ? `${fmt(conv(r.input, c, state.cur), state.cur)} / ${fmt(conv(r.output, c, state.cur), state.cur)}`
+      : "同左";
+    return `<tr>
+      <td><div class="prod"><span class="name">${r.model_name}</span><span class="sub">${r.model}</span></div></td>
+      <td><span class="vbadge"><span class="swatch" style="background:${v.color}"></span>${v.name.split(" · ")[0]}</span></td>
+      <td class="num">${fmt(r.input, c)}</td>
+      <td class="num">${fmt(r.output, c)}</td>
+      <td class="num">${r.cache_read != null ? fmt(r.cache_read, c) : "—"}</td>
+      <td class="num" style="color:var(--muted);font-size:12.5px">${convLine}</td>
+      <td style="white-space:normal;max-width:300px;color:var(--muted);font-size:12.5px;line-height:1.6">${r.note || ""}</td>
+      <td><a class="src-link" href="${r.source}" target="_blank" rel="noopener">文档 ↗</a></td>
+    </tr>`;
+  }).join("");
+}
+
+function renderTables() { renderSubs(); renderApi(); }
+
+function switchTab(t) {
+  state.tab = t;
+  document.querySelectorAll(".tab").forEach(b => b.classList.toggle("active", b.dataset.tab === t));
+  document.getElementById("tab-sub").hidden = t !== "sub";
+  document.getElementById("tab-api").hidden = t !== "api";
+}
+
+async function boot() {
+  try {
+    const res = await fetch("data/prices.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    DATA = await res.json();
+  } catch (e) {
+    const el = document.getElementById("error");
+    el.style.display = "block";
+    el.innerHTML = `⚠️ 无法读取 <code>data/prices.json</code>（${e}）。<br>
+      请通过 HTTP 访问本页：<code>python -m http.server 8000</code> 后打开
+      <a href="http://localhost:8000">http://localhost:8000</a>，或使用 GitHub Pages 部署后的地址。<br>
+      直接双击 index.html（file:// 协议）会被浏览器的跨域策略拦截。`;
+    return;
+  }
+  document.querySelectorAll(".tab").forEach(b => b.onclick = () => switchTab(b.dataset.tab));
+  renderMeta();
+  renderCurPills();
+  renderFilters();
+  renderSubsHead();
+  renderTables();
+}
+boot();
+</script>
+</body>
+</html>

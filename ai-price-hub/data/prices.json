@@ -1,0 +1,469 @@
+{
+  "updated_at": "2026-09-13T02:31:36+00:00Z",
+  "fx": {
+    "base": "USD",
+    "rates": {
+      "USD": 1,
+      "EUR": 0.861838,
+      "GBP": 0.739449,
+      "JPY": 153.797848,
+      "CNY": 6.730863,
+      "INR": 95.579151
+    },
+    "as_of": "Sun, 13 Sep 2026 00:02:31 +0000"
+  },
+  "scrape_status": {
+    "fx": "ok",
+    "openai": "ok",
+    "anthropic": "ok",
+    "bigmodel": "ok"
+  },
+  "subscriptions": [
+    {
+      "vendor": "openai",
+      "product": "ChatGPT Plus · 含 Codex",
+      "note": "进阶档，含 Codex 标准额度",
+      "countries": {
+        "US": {
+          "amount": 20,
+          "currency": "USD",
+          "tax": "税前"
+        },
+        "EU": {
+          "amount": 23,
+          "currency": "EUR",
+          "tax": "含 VAT",
+          "approx": true,
+          "note": "德国参考价，各国随 VAT 浮动"
+        },
+        "UK": {
+          "amount": 20,
+          "currency": "USD",
+          "note": "美元计价，结账可能另加 VAT"
+        },
+        "JP": {
+          "amount": 3000,
+          "currency": "JPY"
+        },
+        "IN": {
+          "amount": 1999,
+          "currency": "INR",
+          "tax": "含 GST"
+        },
+        "CN": null
+      },
+      "source": "https://chatgpt.com/pricing/",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "openai",
+      "product": "ChatGPT Pro 5x · Codex Pro",
+      "note": "Codex 用量为 Plus 的 5 倍，解锁 ChatGPT Pro",
+      "countries": {
+        "US": {
+          "amount": 100,
+          "currency": "USD",
+          "tax": "税前"
+        },
+        "EU": null,
+        "UK": {
+          "amount": 100,
+          "currency": "USD",
+          "note": "美元计价"
+        },
+        "JP": {
+          "amount": 16800,
+          "currency": "JPY",
+          "approx": true,
+          "note": "2026-04 新档"
+        },
+        "IN": null,
+        "CN": null
+      },
+      "source": "https://chatgpt.com/codex/pricing/",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "openai",
+      "product": "ChatGPT Pro 20x",
+      "note": "Codex 用量为 Plus 的 20 倍",
+      "countries": {
+        "US": {
+          "amount": 200,
+          "currency": "USD",
+          "tax": "税前"
+        },
+        "EU": null,
+        "UK": {
+          "amount": 200,
+          "currency": "USD",
+          "note": "美元计价"
+        },
+        "JP": {
+          "amount": 30000,
+          "currency": "JPY"
+        },
+        "IN": {
+          "amount": 19900,
+          "currency": "INR",
+          "tax": "含 GST"
+        },
+        "CN": null
+      },
+      "source": "https://chatgpt.com/pricing/",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "anthropic",
+      "product": "Claude Pro",
+      "note": "全球统一美元计价，部分地区结账时另计税费",
+      "countries": {
+        "US": {
+          "amount": 20,
+          "currency": "USD"
+        },
+        "EU": {
+          "amount": 20,
+          "currency": "USD",
+          "note": "结账另加 VAT（各国税率不同）"
+        },
+        "UK": {
+          "amount": 20,
+          "currency": "USD",
+          "note": "结账另加 VAT"
+        },
+        "JP": {
+          "amount": 20,
+          "currency": "USD",
+          "note": "美元计价"
+        },
+        "IN": {
+          "amount": 20,
+          "currency": "USD",
+          "note": "美元计价"
+        },
+        "CN": null
+      },
+      "source": "https://www.anthropic.com/pricing",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "anthropic",
+      "product": "Claude Max 5x",
+      "note": "Pro 用量的 5 倍，含 Claude Code",
+      "countries": {
+        "US": {
+          "amount": 100,
+          "currency": "USD"
+        },
+        "EU": {
+          "amount": 100,
+          "currency": "USD",
+          "note": "结账另加 VAT"
+        },
+        "UK": {
+          "amount": 100,
+          "currency": "USD",
+          "note": "结账另加 VAT"
+        },
+        "JP": {
+          "amount": 100,
+          "currency": "USD",
+          "note": "美元计价"
+        },
+        "IN": {
+          "amount": 100,
+          "currency": "USD",
+          "note": "美元计价"
+        },
+        "CN": null
+      },
+      "source": "https://www.anthropic.com/pricing",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "anthropic",
+      "product": "Claude Max 20x",
+      "note": "Pro 用量的 20 倍，含 Claude Code 完整权限",
+      "countries": {
+        "US": {
+          "amount": 200,
+          "currency": "USD"
+        },
+        "EU": {
+          "amount": 200,
+          "currency": "USD",
+          "note": "结账另加 VAT"
+        },
+        "UK": {
+          "amount": 200,
+          "currency": "USD",
+          "note": "结账另加 VAT"
+        },
+        "JP": {
+          "amount": 200,
+          "currency": "USD",
+          "note": "美元计价"
+        },
+        "IN": {
+          "amount": 200,
+          "currency": "USD",
+          "note": "美元计价"
+        },
+        "CN": null
+      },
+      "source": "https://www.anthropic.com/pricing",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "zhipu",
+      "product": "GLM Coding Lite",
+      "note": "国际版经 z.ai 以美元计价；约每 5 小时 120 次提示",
+      "countries": {
+        "US": {
+          "amount": 3,
+          "currency": "USD",
+          "approx": true,
+          "note": "z.ai 首发优惠价"
+        },
+        "EU": null,
+        "UK": null,
+        "JP": null,
+        "IN": null,
+        "CN": {
+          "amount": 20,
+          "currency": "CNY"
+        }
+      },
+      "source": "https://bigmodel.cn/glm-coding",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "zhipu",
+      "product": "GLM Coding Pro",
+      "note": "约每 5 小时 600 次提示；国内版以 bigmodel.cn 为准",
+      "countries": {
+        "US": {
+          "amount": 15,
+          "currency": "USD",
+          "approx": true,
+          "note": "z.ai 首发优惠价"
+        },
+        "EU": null,
+        "UK": null,
+        "JP": null,
+        "IN": null,
+        "CN": {
+          "amount": 100,
+          "currency": "CNY",
+          "approx": true
+        }
+      },
+      "source": "https://bigmodel.cn/glm-coding",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "zhipu",
+      "product": "GLM Coding Max",
+      "note": "更高额度；国内版以 bigmodel.cn 为准",
+      "countries": {
+        "US": {
+          "amount": 30,
+          "currency": "USD",
+          "approx": true,
+          "note": "z.ai 首发优惠价"
+        },
+        "EU": null,
+        "UK": null,
+        "JP": null,
+        "IN": null,
+        "CN": {
+          "amount": 200,
+          "currency": "CNY",
+          "approx": true
+        }
+      },
+      "source": "https://bigmodel.cn/glm-coding",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "doubao",
+      "product": "豆包 App",
+      "note": "个人 App 免费，API 按量计费（见 API 价格页）",
+      "countries": {
+        "US": null,
+        "EU": null,
+        "UK": null,
+        "JP": null,
+        "IN": null,
+        "CN": {
+          "amount": 0,
+          "currency": "CNY",
+          "note": "免费"
+        }
+      },
+      "source": "https://www.volcengine.com/product/doubao",
+      "as_of": "2026-09-13"
+    }
+  ],
+  "api_prices": [
+    {
+      "vendor": "openai",
+      "model": "gpt-6-astra",
+      "model_name": "GPT-6 Astra（旗舰）",
+      "currency": "USD",
+      "input": 10.0,
+      "output": 50.0,
+      "cache_read": 1.0,
+      "note": "缓存写 $12.50；Fast mode 约 2 倍价；Batch/Flex 另有折扣档",
+      "source": "https://developers.openai.com/api/docs/pricing",
+      "auto": "openai",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "openai",
+      "model": "gpt-5.6-sol",
+      "model_name": "GPT-5.6 Sol",
+      "currency": "USD",
+      "input": 4.0,
+      "output": 20.0,
+      "cache_read": 0.4,
+      "note": "上一代主力档",
+      "source": "https://developers.openai.com/api/docs/pricing",
+      "auto": "openai",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "openai",
+      "model": "gpt-5.6-terra",
+      "model_name": "GPT-5.6 Terra",
+      "currency": "USD",
+      "input": 2.0,
+      "output": 12.0,
+      "cache_read": 0.2,
+      "note": "均衡档",
+      "source": "https://developers.openai.com/api/docs/pricing",
+      "auto": "openai",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "openai",
+      "model": "gpt-5.6-luna",
+      "model_name": "GPT-5.6 Luna",
+      "currency": "USD",
+      "input": 0.2,
+      "output": 1.2,
+      "cache_read": 0.02,
+      "note": "轻量快速档",
+      "source": "https://developers.openai.com/api/docs/pricing",
+      "auto": "openai",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "anthropic",
+      "model": "claude-opus-5",
+      "model_name": "Claude Opus 5",
+      "currency": "USD",
+      "input": 5.0,
+      "output": 25.0,
+      "cache_read": 0.5,
+      "cache_read_pct": 10,
+      "note": "Batch API 5 折",
+      "source": "https://platform.claude.com/docs/en/docs/about-claude/models",
+      "auto": "anthropic",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "anthropic",
+      "model": "claude-sonnet-5",
+      "model_name": "Claude Sonnet 5",
+      "currency": "USD",
+      "input": 2.0,
+      "output": 10.0,
+      "cache_read": 0.2,
+      "cache_read_pct": 10,
+      "note": "Batch API 5 折",
+      "source": "https://platform.claude.com/docs/en/docs/about-claude/models",
+      "auto": "anthropic",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "anthropic",
+      "model": "claude-haiku-4-5",
+      "model_name": "Claude Haiku 4.5",
+      "currency": "USD",
+      "input": 1.0,
+      "output": 5.0,
+      "cache_read": 0.1,
+      "cache_read_pct": 10,
+      "note": "Batch API 5 折",
+      "source": "https://platform.claude.com/docs/en/docs/about-claude/models",
+      "auto": "anthropic",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "anthropic",
+      "model": "claude-fable-5-1",
+      "model_name": "Claude Fable 5.1",
+      "currency": "USD",
+      "input": 10.0,
+      "output": 50.0,
+      "cache_read": 0.25,
+      "cache_read_pct": 2.5,
+      "note": "缓存读为基础输入价的 2.5%",
+      "source": "https://platform.claude.com/docs/en/docs/about-claude/models",
+      "auto": "anthropic",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "zhipu",
+      "model": "glm-5.3",
+      "model_name": "GLM-5.3（国内）",
+      "currency": "CNY",
+      "input": 8,
+      "output": 28,
+      "cache_read": 2,
+      "note": "1M 上下文",
+      "source": "https://docs.bigmodel.cn/cn/guide/start/pricing",
+      "auto": "bigmodel",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "zhipu",
+      "model": "glm-5",
+      "model_name": "GLM-5（国内）",
+      "currency": "CNY",
+      "input": 4.0,
+      "output": 18.0,
+      "cache_read": 1.0,
+      "note": "输入 <32K：4/18；≥32K：6/22（元/百万 tokens）",
+      "source": "https://docs.bigmodel.cn/cn/guide/start/pricing",
+      "auto": "bigmodel",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "zhipu",
+      "model": "glm-5.3-flash",
+      "model_name": "GLM-5.3-Flash（z.ai）",
+      "currency": "USD",
+      "input": 0.15,
+      "output": 0.5,
+      "cache_read": 0.03,
+      "note": "320B 总参 / 18B 激活",
+      "source": "https://z.ai/subscribe",
+      "as_of": "2026-09-13"
+    },
+    {
+      "vendor": "doubao",
+      "model": "doubao-seed-1.6",
+      "model_name": "Doubao Seed 1.6",
+      "currency": "CNY",
+      "input": 0.8,
+      "output": 8,
+      "cache_read": null,
+      "note": "按输入长度分档（元/百万 tokens）：≤32K 0.8/8；32–128K 1.2/16；128K+ 约 2.4/24；深度思考不加价",
+      "source": "https://www.volcengine.com/docs/82379/1544106",
+      "as_of": "2026-09-13"
+    }
+  ]
+}
