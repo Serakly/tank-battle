@@ -1,16 +1,16 @@
 {
-  "updated_at": "2026-09-21T20:30:21+00:00Z",
+  "updated_at": "2026-09-22T19:50:15+00:00Z",
   "fx": {
     "base": "USD",
     "rates": {
       "USD": 1,
-      "EUR": 0.871295,
-      "GBP": 0.747411,
-      "JPY": 156.918661,
-      "CNY": 6.704712,
-      "INR": 96.03698
+      "EUR": 0.87176,
+      "GBP": 0.747749,
+      "JPY": 157.353588,
+      "CNY": 6.710202,
+      "INR": 95.873393
     },
-    "as_of": "Mon, 21 Sep 2026 00:02:31 +0000"
+    "as_of": "Tue, 22 Sep 2026 00:02:31 +0000"
   },
   "scrape_status": {
     "fx": "ok",
@@ -318,7 +318,7 @@
       "note": "缓存写 $12.50；Fast mode 约 2 倍价；Batch/Flex 另有折扣档",
       "source": "https://developers.openai.com/api/docs/pricing",
       "auto": "openai",
-      "as_of": "2026-09-21"
+      "as_of": "2026-09-22"
     },
     {
       "vendor": "openai",
@@ -331,7 +331,7 @@
       "note": "上一代主力档",
       "source": "https://developers.openai.com/api/docs/pricing",
       "auto": "openai",
-      "as_of": "2026-09-21"
+      "as_of": "2026-09-22"
     },
     {
       "vendor": "openai",
@@ -364,14 +364,14 @@
       "model": "claude-opus-5",
       "model_name": "Claude Opus 5",
       "currency": "USD",
-      "input": 5.0,
-      "output": 25.0,
-      "cache_read": 0.5,
+      "input": 4.0,
+      "output": 20.0,
+      "cache_read": 0.4,
       "cache_read_pct": 10,
       "note": "Batch API 5 折",
       "source": "https://platform.claude.com/docs/en/docs/about-claude/models",
       "auto": "anthropic",
-      "as_of": "2026-09-21"
+      "as_of": "2026-09-22"
     },
     {
       "vendor": "anthropic",
@@ -385,7 +385,7 @@
       "note": "Batch API 5 折",
       "source": "https://platform.claude.com/docs/en/docs/about-claude/models",
       "auto": "anthropic",
-      "as_of": "2026-09-21"
+      "as_of": "2026-09-22"
     },
     {
       "vendor": "anthropic",
@@ -399,7 +399,7 @@
       "note": "Batch API 5 折",
       "source": "https://platform.claude.com/docs/en/docs/about-claude/models",
       "auto": "anthropic",
-      "as_of": "2026-09-21"
+      "as_of": "2026-09-22"
     },
     {
       "vendor": "anthropic",
@@ -413,7 +413,7 @@
       "note": "缓存读为基础输入价的 2.5%",
       "source": "https://platform.claude.com/docs/en/docs/about-claude/models",
       "auto": "anthropic",
-      "as_of": "2026-09-21"
+      "as_of": "2026-09-22"
     },
     {
       "vendor": "zhipu",
@@ -439,7 +439,7 @@
       "note": "输入 <32K：4/18；≥32K：6/22（元/百万 tokens）",
       "source": "https://docs.bigmodel.cn/cn/guide/start/pricing",
       "auto": "bigmodel",
-      "as_of": "2026-09-21"
+      "as_of": "2026-09-22"
     },
     {
       "vendor": "zhipu",
