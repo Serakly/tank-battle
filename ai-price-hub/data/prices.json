@@ -1,16 +1,16 @@
 {
-  "updated_at": "2026-10-19T21:12:05+00:00Z",
+  "updated_at": "2026-10-20T20:05:15+00:00Z",
   "fx": {
     "base": "USD",
     "rates": {
       "USD": 1,
-      "EUR": 0.890861,
-      "GBP": 0.750306,
-      "JPY": 157.911394,
-      "CNY": 6.69274,
-      "INR": 95.184915
+      "EUR": 0.891477,
+      "GBP": 0.751092,
+      "JPY": 158.441511,
+      "CNY": 6.693661,
+      "INR": 95.052511
     },
-    "as_of": "Mon, 19 Oct 2026 00:02:32 +0000"
+    "as_of": "Tue, 20 Oct 2026 00:02:32 +0000"
   },
   "scrape_status": {
     "fx": "ok",
@@ -313,12 +313,12 @@
       "model_name": "GPT-6 Astra（旗舰）",
       "currency": "USD",
       "input": 10.0,
-      "output": 50.0,
-      "cache_read": 1.0,
+      "output": 12.5,
+      "cache_read": 50.0,
       "note": "缓存写 $12.50；Fast mode 约 2 倍价；Batch/Flex 另有折扣档",
       "source": "https://developers.openai.com/api/docs/pricing",
       "auto": "openai",
-      "as_of": "2026-10-19"
+      "as_of": "2026-10-20"
     },
     {
       "vendor": "openai",
@@ -326,12 +326,12 @@
       "model_name": "GPT-5.6 Sol",
       "currency": "USD",
       "input": 4.0,
-      "output": 20.0,
-      "cache_read": 0.4,
+      "output": 5.0,
+      "cache_read": 20.0,
       "note": "上一代主力档",
       "source": "https://developers.openai.com/api/docs/pricing",
       "auto": "openai",
-      "as_of": "2026-10-19"
+      "as_of": "2026-10-20"
     },
     {
       "vendor": "openai",
@@ -439,7 +439,7 @@
       "note": "输入 <32K：4/18；≥32K：6/22（元/百万 tokens）",
       "source": "https://docs.bigmodel.cn/cn/guide/start/pricing",
       "auto": "bigmodel",
-      "as_of": "2026-10-19"
+      "as_of": "2026-10-20"
     },
     {
       "vendor": "zhipu",
