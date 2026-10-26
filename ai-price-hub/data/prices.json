@@ -1,16 +1,16 @@
 {
-  "updated_at": "2026-10-25T19:12:09+00:00Z",
+  "updated_at": "2026-10-26T21:08:55+00:00Z",
   "fx": {
     "base": "USD",
     "rates": {
       "USD": 1,
-      "EUR": 0.892628,
-      "GBP": 0.74768,
-      "JPY": 156.842558,
-      "CNY": 6.689203,
-      "INR": 95.001468
+      "EUR": 0.89213,
+      "GBP": 0.747783,
+      "JPY": 156.872016,
+      "CNY": 6.677446,
+      "INR": 95.160836
     },
-    "as_of": "Sun, 25 Oct 2026 00:02:31 +0000"
+    "as_of": "Mon, 26 Oct 2026 00:02:31 +0000"
   },
   "scrape_status": {
     "fx": "ok",
@@ -318,7 +318,7 @@
       "note": "缓存写 $12.50；Fast mode 约 2 倍价；Batch/Flex 另有折扣档",
       "source": "https://developers.openai.com/api/docs/pricing",
       "auto": "openai",
-      "as_of": "2026-10-25"
+      "as_of": "2026-10-26"
     },
     {
       "vendor": "openai",
@@ -331,7 +331,7 @@
       "note": "上一代主力档",
       "source": "https://developers.openai.com/api/docs/pricing",
       "auto": "openai",
-      "as_of": "2026-10-25"
+      "as_of": "2026-10-26"
     },
     {
       "vendor": "openai",
@@ -439,7 +439,7 @@
       "note": "输入 <32K：4/18；≥32K：6/22（元/百万 tokens）",
       "source": "https://docs.bigmodel.cn/cn/guide/start/pricing",
       "auto": "bigmodel",
-      "as_of": "2026-10-25"
+      "as_of": "2026-10-26"
     },
     {
       "vendor": "zhipu",
