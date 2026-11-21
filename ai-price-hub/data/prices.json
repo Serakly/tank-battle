@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-20T22:45:50+00:00Z",
+  "updated_at": "2026-11-21T21:49:23+00:00Z",
   "fx": {
     "base": "USD",
     "rates": {
@@ -318,7 +318,7 @@
       "note": "缓存写 $12.50；Fast mode 约 2 倍价；Batch/Flex 另有折扣档",
       "source": "https://developers.openai.com/api/docs/pricing",
       "auto": "openai",
-      "as_of": "2026-11-20"
+      "as_of": "2026-11-21"
     },
     {
       "vendor": "openai",
@@ -439,7 +439,7 @@
       "note": "输入 <32K：4/18；≥32K：6/22（元/百万 tokens）",
       "source": "https://docs.bigmodel.cn/cn/guide/start/pricing",
       "auto": "bigmodel",
-      "as_of": "2026-11-20"
+      "as_of": "2026-11-21"
     },
     {
       "vendor": "zhipu",
